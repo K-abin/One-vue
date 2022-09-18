@@ -21,6 +21,7 @@ axios.interceptors.response.use(success=>{
     }
     return;
 })
+// springSecurity不支持json传账户密码
 export const  postKeyValueRequest=(url,param)=>{
     return axios({
         method: 'post',
@@ -29,9 +30,10 @@ export const  postKeyValueRequest=(url,param)=>{
         transformRequest:[function (data){
             let ret = '';
                 for(let i in data){
-                    ret+=encodeURIComponent(i)+`=`+encodeURIComponent(data[i]+`&`)
+                    console.log(i+"-------------");
+                    ret+=encodeURIComponent(i)+'='+encodeURIComponent(data[i])+'&'
                 }
-                console.log(ret);
+                console.log(ret+"==================================================");
             return ret;
 
         }],
